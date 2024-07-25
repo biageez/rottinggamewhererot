@@ -6,6 +6,7 @@ public class ProximityToggleUI : MonoBehaviour
     public GameObject object2;
     public GameObject uiObject1;
     public GameObject uiObject2; // Optional second UI object
+    public GameObject uiObject3; // Optional third UI object
     public float proximityDistance = 1.0f;
 
     private int clickCount = 0;
@@ -53,6 +54,31 @@ public class ProximityToggleUI : MonoBehaviour
                 if (uiObject2 != null)
                 {
                     uiObject2.SetActive(false);
+
+                    if (uiObject3 != null)
+                    {
+                        // Activate the third UI object (if assigned)
+                        uiObject3.SetActive(true);
+                        clickCount = 3;
+                    }
+                    else
+                    {
+                        // Reset clickCount if there's no third UI object
+                        clickCount = 0;
+                    }
+                }
+                else
+                {
+                    // Reset clickCount if there's no second UI object
+                    clickCount = 0;
+                }
+            }
+            else if (clickCount == 3)
+            {
+                // Deactivate the third UI object (if assigned)
+                if (uiObject3 != null)
+                {
+                    uiObject3.SetActive(false);
                 }
                 clickCount = 0;
             }
